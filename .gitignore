@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+examples/plant.dxf
+examples/plant.kml
+examples/plant.geojson
+shpout/
+_demo/
+# 本地 dwg2dxf 二进制（LibreDWG），不进仓库
+_tools/
+_work/        # 临时中间产物

@@ -1,0 +1,24 @@
+# plotsmith 坐标系预设（与 coords.py 内置表一致，可扩展）
+# 用法：plotsmith convert ... --src-cs cgcs2000-3-117 --dst-cs wgs84
+#
+# 注意：本文件仅作说明与展示用，转换时真正生效的是 coords.crs_from_spec()。
+presets:
+  # 地理坐标系
+  wgs84: 4326
+  cgcs2000: 4490
+  beijing54: 4214
+  xian80: 4610
+  # 高斯-克吕格 3 度带（CM 版 EPSG：4534 对应中央子午线 75E，每 3 度 +1）
+  cgcs2000-3-117: 4548
+  cgcs2000-3-120: 4549
+  # 高斯-克吕格 6 度带（无 CM 版 EPSG，仍用带号版，仅作展示）
+  cgcs2000-6-117: 4498
+notes: |
+  高斯-克吕格带 EPSG 也可命令计算：
+    plotsmith coords epsg --central 117 --band 3   # -> EPSG:4548 (CM 117E)
+    plotsmith coords epsg --central 117 --band 6   # -> EPSG:4498
+
+  为什么 3 度带用 4548 而不是 4527？
+    两者都表示 CGCS2000 3 度带中央子午线 117E，前者是按中央子午线命名
+    （CM 版），后者是按带号命名（zone 39）。部分 proj 构建对带号版 EPSG
+    反算会返回 inf，因此展示与默认取值统一用 CM 版。

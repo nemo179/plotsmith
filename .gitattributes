@@ -1,0 +1,9 @@
+# 统一行尾为 LF，跨平台协作更干净
+* text=auto eol=lf
+
+*.py    text
+*.md    text
+*.yaml  text
+*.yml   text
+*.toml  text
+*.txt   text

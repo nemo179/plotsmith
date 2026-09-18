@@ -1,0 +1,87 @@
+# 南方 CASS 地形图图层语义映射（presets/cass_topo_layers.yaml）
+#
+# 适用：CASS / 南方测绘 / 各院地形图标准图层码（4 字母大写）。
+# 匹配策略：CASS 码是固定 4 字母，用 prefix 可同时命中带数字后缀的变体
+# （如 DLSS / DLSS1 / JMD / JMD2）。用 exact 亦可，但 prefix 更稳。
+#
+# 字段含义：
+#   feature_class  GIS 要素类（英文，短，便于入库）
+#   category       大类
+#   label          中文名（出 KML/SHP 时显示）
+#
+# 匹配顺序：exact -> prefix -> regex，命中即返回；否则用 default。
+
+rules:
+  # —— 地形（terrain）——
+  - match: GCD
+    type: prefix
+    feature_class: elevation_point
+    category: terrain
+    label: 高程点
+  - match: DGX
+    type: prefix
+    feature_class: contour_line
+    category: terrain
+    label: 等高线
+  - match: DMTZ
+    type: prefix
+    feature_class: landform
+    category: terrain
+    label: 地貌注记
+
+  # —— 居民地与建筑（building）——
+  - match: JMD
+    type: prefix
+    feature_class: building
+    category: building
+    label: 居民地或建构筑物
+
+  # —— 交通（transport）——
+  - match: DLSS
+    type: prefix
+    feature_class: road
+    category: transport
+    label: 道路设施
+  - match: DLDW
+    type: prefix
+    feature_class: landmark
+    category: transport
+    label: 独立地物
+
+  # —— 管线与设施（utility/pipe）——
+  - match: GXYZ
+    type: prefix
+    feature_class: pipeline
+    category: utility
+    label: 管线设施
+
+  # —— 水系（water）——
+  - match: SXSS
+    type: prefix
+    feature_class: water
+    category: water
+    label: 水系设施
+
+  # —— 植被（vegetation）——
+  - match: ZBTZ
+    type: prefix
+    feature_class: vegetation
+    category: vegetation
+    label: 植被
+
+  # —— 图廓与辅助（frame/annotation）——
+  - match: TK
+    type: prefix
+    feature_class: map_frame
+    category: frame
+    label: 图廓
+  - match: ASSIST
+    type: prefix
+    feature_class: annotation
+    category: annotation
+    label: 辅助要素
+
+default:
+  feature_class: unknown
+  category: other
+  label: 未分类

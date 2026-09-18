@@ -1,0 +1,145 @@
+# plotsmith 图层语义映射 —— 工厂总图规划版
+#
+# 把 CAD 里 "DL-SS-01" 这类图层名，翻译成 "给排水管道" 这类有意义的 GIS 要素类。
+# 匹配顺序：exact -> prefix -> regex，命中即返回；都未命中则用 default。
+#
+# 【重要】规则按「从具体到宽泛」排列。宽泛规则（如道路 DL-L）必须放在
+# 更具体的同类规则之后，否则会把 DL-LXXX 这类专有图层错误吞掉。
+# 自定义时请把你的规则加在 rules 列表靠前的位置。
+rules:
+  # ---------- 竖向与地形 ----------
+  - match: "GCD|高程点|ELEV"
+    type: regex
+    feature_class: elevation_point
+    category: terrain
+    label: 高程点
+  - match: "DGX|等高线|CONTOUR"
+    type: regex
+    feature_class: contour_line
+    category: terrain
+    label: 等高线
+  - match: "DMTZ|地貌"
+    type: regex
+    feature_class: landform
+    category: terrain
+    label: 地貌
+
+  # ---------- 道路与运输 ----------
+  - match: "TL|铁路|RAIL"
+    type: regex
+    feature_class: railway
+    category: transport
+    label: 铁路
+  - match: "ZX|中心线|CENTER"
+    type: regex
+    feature_class: centerline
+    category: transport
+    label: 道路中心线
+  - match: "LJ|路肩"
+    type: regex
+    feature_class: road_shoulder
+    category: transport
+    label: 路肩
+  - match: "ROAD|道路|DL-L"
+    type: regex
+    feature_class: road
+    category: transport
+    label: 道路或路边线
+  - match: "TG|堆场|DC"
+    type: regex
+    feature_class: storage_yard
+    category: storage
+    label: 堆场
+
+  # ---------- 建（构）筑物 ----------
+  - match: "JZ|建筑|BUILDING"
+    type: regex
+    feature_class: building
+    category: building
+    label: 建筑物
+  - match: "JG|构筑"
+    type: regex
+    feature_class: structure
+    category: building
+    label: 构筑物
+  - match: "CG|储罐|TANK"
+    type: regex
+    feature_class: tank
+    category: storage
+    label: 储罐
+  - match: "SB|设备|EQUIP"
+    type: regex
+    feature_class: equipment
+    category: equipment
+    label: 设备
+  - match: "AX|轴线|AXIS"
+    type: regex
+    feature_class: axis
+    category: reference
+    label: 轴线或坐标网
+
+  # ---------- 管线（顺序敏感：专用管线在前）----------
+  - match: "DL-SS|给水|WATER"
+    type: regex
+    feature_class: water_supply_pipe
+    category: pipe
+    label: 给水管道
+  - match: "DL-PS|排水|SEWER"
+    type: regex
+    feature_class: drainage_pipe
+    category: pipe
+    label: 排水管道
+  - match: "XF|消防|FIRE"
+    type: regex
+    feature_class: fire_pipe
+    category: pipe
+    label: 消防管道
+  - match: "RQ|燃气|GAS"
+    type: regex
+    feature_class: gas_pipe
+    category: pipe
+    label: 燃气管道
+  - match: "DL-DL|电力|POWER"
+    type: regex
+    feature_class: power_line
+    category: utility
+    label: 电力线
+  - match: "TX|通信|弱电|COM"
+    type: regex
+    feature_class: telecom_line
+    category: utility
+    label: 通信线路
+  - match: "GW|管廊|管架"
+    type: regex
+    feature_class: pipe_rack
+    category: utility
+    label: 管廊或管架
+
+  # ---------- 场地设施 ----------
+  - match: "WQ|WF|围墙|WALL"
+    type: regex
+    feature_class: fence
+    category: boundary
+    label: 围墙
+  - match: "LH|LD-|绿化|GREEN"
+    type: regex
+    feature_class: green_belt
+    category: landscape
+    label: 绿化用地
+  - match: "JK|红线|BOUND"
+    type: regex
+    feature_class: red_line
+    category: boundary
+    label: 用地红线
+
+  # ---------- 注记（放最后，避免吞掉实体图层）----------
+  - match: "TEXT|注记|标注|ZB-|PUB_TEXT|REMARK"
+    type: regex
+    feature_class: annotation
+    category: annotation
+    label: 文字注记
+
+default:
+  feature_class: unknown
+  category: other
+  label: 未分类
