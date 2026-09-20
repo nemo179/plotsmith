@@ -84,13 +84,13 @@ plotsmith convert examples/plant.dxf plant.kml --src-cs cgcs2000-3-117
 - **想保留高斯投影请用 SHP**：每个 shp 会附带 `.prj`，ArcMap/QGIS 打开
   直接识别为 `CGCS2000_3_Degree_GK_CM_117E`，不会弹「未知坐标系」。
 
-## 已验证案例（广元海螺厂区地形图）
+## 已验证案例（某工厂地形图）
 
 一张 20MB 的 CASS 地形图 DXF（13 个标准图层、约 1.9 万要素）实测：
 
 - 坐标系判定为 **CGCS2000 高斯-克吕格 3 度带、中央子午线 105°E**
   （`cgcs2000-3-105`，EPSG:4544）——坐标范围 (580k, 3610k) 反算落到
-  广元 (105.86°E, 32.61°N)，吻合。
+  某工厂 (105.86°E, 32.61°N)，吻合。
 - `--layer-map cass` 后 12 个数据图层**全部命中语义**（居民地/道路/管线/
   水系/植被/高程点/等高线/地貌/独立地物/图廓/辅助），仅 AutoCAD 默认
   图层 `0` 落 unknown（符合预期）。
@@ -98,7 +98,7 @@ plotsmith convert examples/plant.dxf plant.kml --src-cs cgcs2000-3-117
   带 `.prj`（`CGCS2000_3_Degree_GK_CM_105E`），ArcMap/QGIS 直接识别。
 
 ```bash
-plotsmith convert 广元海螺厂区地形图.dxf guangyuan.kml \
+plotsmith convert 某工厂地形图.dxf factory.kml \
     --src-cs cgcs2000-3-105 --layer-map cass
 ```
 
