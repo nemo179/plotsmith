@@ -137,3 +137,10 @@ pytest -q
 ## 许可
 
 MIT
+
+## 社区 / Community
+
+- CSDN 技术博客：https://blog.csdn.net/flynet123/article/details/166137434
+- 知乎专栏：https://zhuanlan.zhihu.com/p/2085022332368832154
+
+欢迎在上面平台交流使用心得，或直接在 GitHub 提 issue / PR。
