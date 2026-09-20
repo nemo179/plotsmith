@@ -142,5 +142,6 @@ MIT
 
 - CSDN 技术博客：https://blog.csdn.net/flynet123/article/details/166137434
 - 知乎专栏：https://zhuanlan.zhihu.com/p/2085022332368832154
+- 掘金：https://juejin.cn/post/7687446787749609478
 
-欢迎在上面平台交流使用心得，或直接在 GitHub 提 issue / PR。
+欢迎在上面平台交流使用心得，或直接在 GitHub 提 issue / PR。如果本工具对你的总图 / 测绘工作有帮助，欢迎点个 Star ⭐。
