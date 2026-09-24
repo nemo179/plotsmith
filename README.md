@@ -1,6 +1,13 @@
 # plotsmith / 总图匠
 
+![CI](https://github.com/nemo179/plotsmith/actions/workflows/ci.yml/badge.svg)
+![License](https://img.shields.io/github/license/nemo179/plotsmith)
+![Python](https://img.shields.io/badge/python-3.9%20%7C%203.11%20%7C%203.13-blue)
+
 工厂总图规划师的**智能格式互转**工具。零 GDAL 依赖的纯 Python 实现。
+
+**English:** A zero-GDAL Python toolkit for CAD↔GIS format conversion with first-class
+Chinese coordinate systems (CGCS2000 / Gauss-Krüger) and CASS topographic layer semantics.
 
 > MVP 范围：智能格式互转（中文坐标系一键处理 + 总图图层语义映射）。
 > 后续支柱：三维总平融合（Cesium 3D Tiles）、总图规范校验（GB50187 / 防火间距）。
