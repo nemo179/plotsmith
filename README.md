@@ -12,6 +12,14 @@ Chinese coordinate systems (CGCS2000 / Gauss-Krüger) and CASS topographic layer
 > MVP 范围：智能格式互转（中文坐标系一键处理 + 总图图层语义映射）。
 > 后续支柱：三维总平融合（Cesium 3D Tiles）、总图规范校验（GB50187 / 防火间距）。
 
+## 功能特性
+
+- **零 GDAL 依赖**：纯 Python（ezdxf / shapely / pyproj / pyshp），终端用户免装 GDAL，Windows 上开箱即用。
+- **中文坐标系一键处理**：CGCS2000 / 北京54 / 西安80 / 高斯-克吕格分带，支持 `cgcs2000-3-117`、`epsg:4548` 等写法，无需手查 EPSG。
+- **总图图层语义映射**：CAD 图层名（如 `DL-SS-01`）自动变成有意义的 GIS 要素类 + 中文标签，内置 25 条总图专业规则；另附南方 CASS 地形图预设（JMD / DLSS / GXYZ / SXSS / ZBTZ …）。
+- **多格式输出**：DXF → KML / GeoJSON / SHP；KML / GeoJSON 固定输出 WGS84（Google Earth / Web 直接可开），SHP 保留高斯投影并自动写 `.prj`。
+- **命令行优先**：`convert` / `coords` / `map-layers` 三个子命令，便于脚本化与批处理。
+
 ## 为什么不用 GDAL
 
 通用转换引擎（GDAL/ogr2ogr、QGIS）在 Windows 上装 GDAL 绑定极坑，
