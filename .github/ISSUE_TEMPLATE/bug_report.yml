@@ -1,0 +1,37 @@
+name: Bug report / 问题反馈
+description: 报告一个转换错误或崩溃
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 现象
+      description: 发生了什么？期望是什么？
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: 复现步骤
+      description: 命令、输入文件类型（DXF/DWG 版本）、坐标系写法、--layer-map 取值
+      placeholder: |
+        1. plotsmith convert input.dxf out.kml --src-cs cgcs2000-3-117 --layer-map cass
+        2. ...
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: 环境
+      description: Python 版本、操作系统、plotsmith 版本/commit
+      placeholder: Python 3.11 / Windows 10 / plotsmith 0.1.0 (38ab22c)
+    validations:
+      required: false
+  - type: textarea
+    id: extra
+    attributes:
+      label: 补充
+      description: 报错栈、截图、样例（可脱敏）等
+    validations:
+      required: false

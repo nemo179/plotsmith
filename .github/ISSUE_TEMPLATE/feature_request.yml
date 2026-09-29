@@ -1,0 +1,32 @@
+name: Feature request / 功能建议
+description: 建议一个新能力或改进
+title: "[feat] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: 你的使用场景
+      description: 你是总图/测绘/市政/哪类工作？卡在哪一步？
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 期望的方案
+      description: 希望支持什么格式 / 坐标系 / 图层码？CLI 怎么调用？
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: 涉及模块
+      options:
+        - 转换管线（DXF/DWG → KML/SHP/GeoJSON）
+        - 坐标系（CGCS2000/北京54/西安80/高斯-克吕格）
+        - 图层语义映射（含 CASS 预设）
+        - LLM 图层建议（map-layers suggest）
+        - CLI / 文档
+        - 其他
+    validations:
+      required: false
